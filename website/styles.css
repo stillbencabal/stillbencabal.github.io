@@ -1,0 +1,30 @@
+html, body {
+    font-family: "Times New Roman", serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #333, #000000);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    color: white;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    flex: 1;
+    text-align: center;
+    padding: 2rem;
+}
+
