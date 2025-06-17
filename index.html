@@ -1,88 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Pythongrounds!
-        </title>
+<head>
+    <title>Pythongrounds!</title>
 
-        <style>
-            body, h1, h2, p, li, table
-            {
-                font-family: Helvetica Neue, Helvetica, Times New Roman, sans-serif;
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+
+    <style>
+        body, h1, h2, p, li, table {
+            font-family: Helvetica Neue, Helvetica, Times New Roman, sans-serif;
+        }
+
+        body {
+            background: black;
+        }
+
+        h1 {
+            color: yellow;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        p, table {
+            color: white;
+        }
+
+        #blocklyDiv {
+            height: 500px;
+            width: 1000px;
+            margin-top: 20px;
+        }
+
+        #outputDiv {
+            color: white;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid white;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pythongrounds!</h1>
+
+    <h2>Helping Kids Understand Python through Games!</h2>
+
+    <table bgcolor="green" width="375">
+        <tr bgcolor="blue">
+            <th width="125">Calculator</th>
+            <th width="125">Turtle Graphics</th>
+            <th width="125">Tic Tac Toe</th>
+        </tr>
+
+        <tr bgcolor="yellow" align="center">
+            <td>
+                <a href="https://scratch.mit.edu/projects/1185876491" target="_blank" title="Coding through Scratch" style="color: black;">
+                    Scratch
+                </a>
+            </td>
+
+            <td>
+                <a href="https://docs.python.org/3/library/turtle.html" target="_blank" title="Turtle Graphics Documentation" style="color: black;">
+                    Documentation
+                </a>
+            </td>
+            <td>
+                <a href="https://scratch.mit.edu/projects/1185886213" target="_blank" title="Tic Tac Toe Scratch" style="color: black;">
+                    Scratch
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <div id="blocklyDiv"></div>
+
+    <xml id="toolbox" style="display: none">
+        <category name="Logic">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_null"></block>
+            <block type="logic_ternary"></block>
+        </category>
+        <category name="Loops">
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for"></block>
+            <block type="controls_forEach"></block>
+        </category>
+        <category name="Math">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="math_single"></block>
+            <block type="math_round"></block>
+            <block type="math_random_int"></block>
+        </category>
+        <category name="Text">
+            <block type="text"></block>
+            <block type="text_print"></block>
+            <block type="text_prompt_ext"></block>
+        </category>
+        <category name="Variables" custom="VARIABLE"></category>
+        <category name="Functions" custom="PROCEDURE"></category>
+    </xml>
+
+    <button onclick="generateCode()">Execute</button>
+
+    <div id="outputDiv">Output will appear here</div>
+
+    <script>
+        const workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox')
+        });
+
+        function generateCode() {
+            const code = Blockly.JavaScript.workspaceToCode(workspace);
+            try {
+                const result = eval(code);
+                document.getElementById('outputDiv').textContent = 'Output: ' + result;
+            } catch (error) {
+                document.getElementById('outputDiv').textContent = 'Error: ' + error;
             }
+        }
+    </script>
 
-            body
-            {
-                background: black;
-            }
+    <p>
+        <a href="https://deeplearn.academy" target="_self" title="About Us!" style="color: blue;">Learn more about us!</a>
+    </p>
 
-            h1 
-            {
-                color: yellow;
-            }
-
-            h2
-            {
-                color: blue;
-            }
-
-            p, table
-            {
-                color: white;
-            }
-        </style>
-    </head>
-
-    <body>
-        <h1>
-            Pythongrounds!
-        </h1>
-
-        <h2>
-            Helping Kids Understand Python through Games!
-        </h2>
-
-        <table bgcolor="green" width="375">
-            <tr bgcolor="blue">
-                <th width="125">
-                    Calculator
-                </th>
-                <th width="125">
-                    Turtle Graphics
-                </th>
-                <th width="125">
-                    Tic Tac Toe
-                </th>
-            </tr>
-
-            <tr bgcolor="yellow" align="center">
-                <td>
-                    <a href="https://scratch.mit.edu/projects/1185876491" target=_blank title="Coding through Scratch" style="color: black;">
-                        Scratch
-                    </a>
-                </td>
-
-                <td>
-                    <a href="https://docs.python.org/3/library/turtle.html" target=_blank title="Turtle Graphics Documentation" style="color: black;">
-                        Documentation
-                    </a>
-                </td>
-                <td>
-                    <a href="https://scratch.mit.edu/projects/1185886213" target=_blank title="Tic Tac Toe Scratch" style="color: black;">
-                        Scratch
-                    </a>
-                </td>
-            </tr>
-        </table>
-
-        <p>
-            <!-- This is a link to another html page-->
-            <a href="https://deeplearn.academy" target=_self title="About Us!" style="color: blue;">Learn more about us!</a>
-        </p>
-        
-        <!-- This is a link within an image-->
-        <a href="https://www.w3schools.com/python/" target=_blank>
-            <img src="images/python.png" width="250" height="250" alt="Image of Python" title="Link to Learning Python">
-        </a>
-    </body>
+    <a href="https://www.w3schools.com/python/" target="_blank">
+        <img src="images/python.png" width="250" height="250" alt="Image of Python" title="Link to Learning Python">
+    </a>
+</body>
 </html>
